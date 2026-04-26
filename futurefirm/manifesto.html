@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifesto -- Future Firm</title>
+<meta name="description" content="The professional firm model is not being updated. It is being replaced. A manifesto on what actually changes when AI restructures the economics of professional work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+
+/* ---- TOKENS ---- */
+:root {
+  --bg:       #09090A;
+  --bg-1:     #0E0F10;
+  --bg-2:     #141517;
+  --bg-3:     #1A1C1E;
+  --line:     rgba(255,255,255,0.065);
+  --line-mid: rgba(255,255,255,0.12);
+  --text:     #DDD8CF;
+  --text-dim: #6B6860;
+  --text-mid: #9A958D;
+  --acc:      #A8C9A0;
+  --acc-dim:  rgba(168,201,160,0.10);
+  --acc-glow: rgba(168,201,160,0.04);
+  --white:    #EDEAE4;
+  --red:      #C87060;
+  --amber:    #C8A060;
+  --col-w:    680px;
+}
+
+/* ---- RESET ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---- GRAIN ---- */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+/* ---- GRID TEXTURE ---- */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none; z-index: 0;
+}
+
+section, nav, footer, header, aside { position: relative; z-index: 1; }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 200; height: 56px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(9,9,10,0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 14px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+}
+
+.nav-links {
+  display: flex; align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: 0.06em;
+  color: var(--text-dim); text-decoration: none;
+  padding: 0 20px; height: 56px;
+  display: flex; align-items: center;
+  border-left: 1px solid var(--line);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--acc); }
+.nav-links li:last-child a { border-right: 1px solid var(--line); }
+
+.nav-cta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--bg); background: var(--acc);
+  padding: 9px 22px; text-decoration: none;
+  transition: opacity 0.2s; margin-left: 24px;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ---- MASTHEAD ---- */
+.masthead {
+  padding-top: 56px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.masthead-inner {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  align-items: end;
+}
+
+.masthead-left {
+  padding: 72px 72px 64px;
+  border-right: 1px solid var(--line);
+}
+
+.masthead-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--acc);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 32px;
+}
+.masthead-tag::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--acc); display: block;
+}
+
+.masthead-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.0; letter-spacing: -0.025em;
+  color: var(--white); margin-bottom: 28px;
+}
+
+.masthead-sub {
+  font-size: 16px; font-weight: 400;
+  color: var(--text-mid); line-height: 1.75;
+  max-width: 520px;
+}
+
+.masthead-right {
+  padding: 40px 44px;
+  display: flex; flex-direction: column;
+}
+
+.masthead-meta-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.masthead-meta-item:last-child { border-bottom: none; }
+
+.meta-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-dim);
+}
+.meta-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--text-mid);
+  letter-spacing: 0.04em;
+}
+
+/* ---- TOC BAR ---- */
+.toc-bar {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  overflow-x: auto;
+}
+.toc-inner {
+  display: flex; align-items: center;
+  height: 44px; white-space: nowrap;
+}
+.toc-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-dim);
+  padding: 0 24px; height: 100%;
+  display: flex; align-items: center;
+  border-right: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.toc-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  color: var(--text-dim); text-decoration: none;
+  padding: 0 20px; height: 100%;
+  display: flex; align-items: center;
+  border-right: 1px solid var(--line);
+  transition: color 0.2s; flex-shrink: 0;
+}
+.toc-link:hover { color: var(--acc); }
+
+/* ---- PAGE BODY + SIDEBAR ---- */
+.page-body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  align-items: start;
+}
+
+.page-main {
+  border-right: 1px solid var(--line);
+  min-width: 0;
+}
+
+.page-aside {
+  position: sticky; top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  display: flex; flex-direction: column;
+  border-bottom: 1px solid var(--line);
+}
+
+.aside-nav { padding: 32px; flex: 1; }
+
+.aside-nav-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: 20px;
+}
+
+.aside-nav ul {
+  list-style: none;
+  display: flex; flex-direction: column;
+}
+
+.aside-nav li a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: 0.04em;
+  color: var(--text-dim); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  transition: color 0.2s; line-height: 1.4;
+}
+.aside-nav li:last-child a { border-bottom: none; }
+.aside-nav li a:hover { color: var(--acc); }
+.aside-nav li a.active { color: var(--acc); }
+.aside-nav li a .a-num {
+  font-size: 10px; color: var(--acc);
+  flex-shrink: 0; min-width: 24px;
+}
+
+.aside-thesis {
+  padding: 24px 32px;
+  border-top: 1px solid var(--line);
+  background: var(--acc-glow);
+}
+.aside-thesis p {
+  font-family: 'Fraunces', serif;
+  font-style: italic; font-weight: 300;
+  font-size: 13px; line-height: 1.6;
+  color: var(--acc);
+}
+
+/* ---- SECTION HEADS ---- */
+.s-head {
+  display: flex; align-items: center;
+  height: 44px;
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.s-head-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.14em;
+  color: var(--acc); padding: 0 24px;
+  border-right: 1px solid var(--line);
+  height: 100%; display: flex; align-items: center;
+  min-width: 72px;
+}
+.s-head-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-dim);
+  padding: 0 24px;
+  height: 100%; display: flex; align-items: center;
+}
+.s-head-right {
+  margin-left: auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  color: var(--text-dim); padding: 0 24px;
+  border-left: 1px solid var(--line);
+  height: 100%; display: flex; align-items: center;
+}
+
+/* ---- MANIFESTO SECTION (primary prose unit) ---- */
+.m-section {
+  padding: 72px 72px;
+  border-bottom: 1px solid var(--line);
+}
+.m-section.alt { background: var(--bg-1); }
+.m-section.tight { padding-top: 56px; padding-bottom: 56px; }
+
+.m-h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(26px, 2.8vw, 38px);
+  line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 36px;
+  max-width: var(--col-w);
+}
+.m-h2 em { font-style: italic; color: var(--acc); }
+
+/* Manifesto body uses slightly larger line-height, shorter paragraphs */
+.m-body {
+  max-width: var(--col-w);
+  display: flex; flex-direction: column; gap: 18px;
+}
+
+.m-body p {
+  font-size: 15px; font-weight: 400;
+  color: var(--text-mid); line-height: 1.85;
+}
+
+.m-body p strong { color: var(--white); font-weight: 600; }
+
+.m-body p.lead {
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ---- OPENING STATEMENT ---- */
+.opening-section {
+  padding: 96px 72px 80px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.opening-statement {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05; letter-spacing: -0.025em;
+  color: var(--white);
+  max-width: 820px;
+  margin-bottom: 48px;
+}
+.opening-statement em { font-style: italic; color: var(--acc); }
+
+.opening-note {
+  max-width: var(--col-w);
+}
+.opening-note p {
+  font-size: 16px; font-weight: 400;
+  color: var(--text-mid); line-height: 1.8;
+}
+
+/* ---- PULL QUOTE ---- */
+.pull-quote {
+  margin: 8px 0;
+  padding: 32px 40px;
+  border-left: 2px solid var(--acc);
+  background: var(--acc-glow);
+  max-width: var(--col-w);
+}
+.pull-quote p {
+  font-family: 'Fraunces', serif;
+  font-style: italic; font-weight: 300;
+  font-size: 20px; line-height: 1.5;
+  color: var(--acc);
+  letter-spacing: -0.01em;
+}
+
+/* ---- DECLARATION LIST (for "what firms get wrong") ---- */
+.decl-list {
+  max-width: var(--col-w);
+  margin-top: 8px;
+  display: flex; flex-direction: column;
+}
+
+.decl-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.decl-item:last-child { border-bottom: none; }
+
+.decl-marker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--red);
+  margin-top: 3px; flex-shrink: 0;
+}
+
+.decl-content {}
+
+.decl-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 14px;
+  letter-spacing: 0.01em; color: var(--white);
+  margin-bottom: 10px;
+}
+
+.decl-text {
+  font-size: 14px; color: var(--text-mid);
+  line-height: 1.8; font-weight: 400;
+}
+
+/* ---- THE CHOICE (two-column contrast) ---- */
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  max-width: var(--col-w);
+  margin-top: 8px;
+}
+
+.choice-col {
+  border: 1px solid var(--line);
+  padding: 0;
+}
+
+.choice-col-head {
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--bg-2);
+}
+
+.choice-col:first-child .choice-col-head { color: var(--red); }
+.choice-col:last-child  .choice-col-head { color: var(--acc); }
+
+.choice-items {
+  display: flex; flex-direction: column;
+}
+.choice-item {
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px; color: var(--text-mid);
+  line-height: 1.7; font-weight: 400;
+}
+.choice-item:last-child { border-bottom: none; }
+
+/* ---- CLOSING ---- */
+.closing-section {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.closing-quote-block {
+  padding: 80px 72px 72px;
+  border-bottom: 1px solid var(--line);
+}
+
+.closing-quote-block blockquote {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1.25; letter-spacing: -0.02em;
+  color: var(--white);
+  max-width: 820px;
+}
+.closing-quote-block blockquote em {
+  font-style: italic; color: var(--acc);
+}
+
+.closing-coda {
+  padding: 48px 72px 64px;
+  max-width: var(--col-w);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.closing-coda p {
+  font-size: 15px; font-weight: 400;
+  color: var(--text-mid); line-height: 1.85;
+}
+.closing-coda p strong { color: var(--white); font-weight: 600; }
+
+/* ---- CTA ---- */
+.m-cta {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  border-bottom: 1px solid var(--line);
+}
+.m-cta-left {
+  padding: 72px 72px;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 24px;
+}
+.m-cta-h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--white);
+}
+.m-cta-h2 em { font-style: italic; color: var(--acc); }
+
+.m-cta-body {
+  font-size: 14px; color: var(--text-mid);
+  line-height: 1.85; font-weight: 400;
+  max-width: 480px;
+}
+
+.m-cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--bg); background: var(--acc);
+  padding: 12px 28px; text-decoration: none;
+  transition: opacity 0.2s; display: inline-block;
+}
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-ghost {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-dim);
+  border: 1px solid var(--line-mid);
+  padding: 12px 28px; text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+  display: inline-block;
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--acc); }
+
+.m-cta-right {
+  display: flex; flex-direction: column;
+}
+.m-cta-detail {
+  flex: 1; padding: 32px 36px;
+  border-bottom: 1px solid var(--line);
+}
+.m-cta-detail:last-child { border-bottom: none; }
+.m-cta-detail-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.m-cta-detail-text {
+  font-size: 13px; color: var(--text-mid);
+  line-height: 1.75; font-weight: 400;
+}
+
+/* ---- FOOTER ---- */
+footer {
+  padding: 28px 48px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 32px;
+  background: var(--bg);
+}
+.footer-brand {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 13px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--white);
+}
+.footer-desc {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+.footer-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.footer-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--text-dim);
+  text-decoration: none; letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text); }
+.footer-right {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.06em; text-align: right;
+}
+
+/* ---- SCROLL ANIMATION ---- */
+.appear {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.appear.visible { opacity: 1; transform: none; }
+.appear-d1 { transition-delay: 0.08s; }
+.appear-d2 { transition-delay: 0.16s; }
+
+/* ---- MOBILE ---- */
+@media (max-width: 1100px) {
+  .page-aside { display: none; }
+  .page-body { grid-template-columns: 1fr; }
+  .page-main { border-right: none; }
+}
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  nav ul { display: none; }
+  .masthead-inner { grid-template-columns: 1fr; }
+  .masthead-left { padding: 56px 28px 48px; }
+  .masthead-right { display: none; }
+  .opening-section { padding: 64px 28px 56px; }
+  .m-section { padding: 56px 28px; }
+  .closing-quote-block { padding: 56px 28px 48px; }
+  .closing-coda { padding: 40px 28px 56px; }
+  .choice-grid { grid-template-columns: 1fr; }
+  .m-cta { grid-template-columns: 1fr; }
+  .m-cta-left { padding: 56px 28px; border-right: none; }
+  .m-cta-right { display: none; }
+  footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 28px; }
+  .footer-links { display: none; }
+  .toc-bar { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Future Firm</a>
+  <ul class="nav-links">
+    <li><a href="index.html#shift">The Shift</a></li>
+    <li><a href="index.html#thesis">Thesis</a></li>
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="manifesto.html" class="active">Manifesto</a></li>
+  </ul>
+  <a href="index.html#access" class="nav-cta">Access the Research &#8594;</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-left appear">
+      <div class="masthead-tag">Manifesto &middot; Future Firm</div>
+      <h1 class="masthead-title">The professional<br>firm model is not<br>being updated.</h1>
+      <p class="masthead-sub">It is being rewritten. Most professional firms have not yet understood this distinction. That gap is the subject of what follows.</p>
+    </div>
+    <div class="masthead-right">
+      <div class="masthead-meta-item">
+        <span class="meta-label">Document type</span>
+        <span class="meta-value">Manifesto</span>
+      </div>
+      <div class="masthead-meta-item">
+        <span class="meta-label">Published by</span>
+        <span class="meta-value">Future Firm</span>
+      </div>
+      <div class="masthead-meta-item">
+        <span class="meta-label">Applies to</span>
+        <span class="meta-value">Tax, Legal, Accounting,<br>Adjacent Advisory</span>
+      </div>
+      <div class="masthead-meta-item">
+        <span class="meta-label">Related</span>
+        <span class="meta-value"><a href="framework.html" style="color:var(--acc);text-decoration:none;">The Future Firm Architecture &#8594;</a></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TOC -->
+<div class="toc-bar">
+  <div class="toc-inner">
+    <span class="toc-label">Sections</span>
+    <a href="#opening"    class="toc-link">I. Opening</a>
+    <a href="#misunderstanding" class="toc-link">II. The Misunderstanding</a>
+    <a href="#shift"      class="toc-link">III. The Shift</a>
+    <a href="#execution"  class="toc-link">IV. Execution Collapses</a>
+    <a href="#repricing"  class="toc-link">V. Judgment is Repriced</a>
+    <a href="#professional" class="toc-link">VI. The New Professional</a>
+    <a href="#wrong"      class="toc-link">VII. What Firms Get Wrong</a>
+    <a href="#choice"     class="toc-link">VIII. The Choice</a>
+    <a href="#closing"    class="toc-link">IX. Closing</a>
+  </div>
+</div>
+
+<!-- PAGE BODY -->
+<div class="page-body">
+
+<!-- SIDEBAR -->
+<aside class="page-aside">
+  <nav class="aside-nav">
+    <div class="aside-nav-title">Sections</div>
+    <ul>
+      <li><a href="#opening"><span class="a-num">I</span>Opening Statement</a></li>
+      <li><a href="#misunderstanding"><span class="a-num">II</span>The Misunderstanding</a></li>
+      <li><a href="#shift"><span class="a-num">III</span>The Shift</a></li>
+      <li><a href="#execution"><span class="a-num">IV</span>Execution Collapses</a></li>
+      <li><a href="#repricing"><span class="a-num">V</span>Judgment is Repriced</a></li>
+      <li><a href="#professional"><span class="a-num">VI</span>The New Professional</a></li>
+      <li><a href="#wrong"><span class="a-num">VII</span>What Firms Get Wrong</a></li>
+      <li><a href="#choice"><span class="a-num">VIII</span>The Choice</a></li>
+      <li><a href="#closing"><span class="a-num">IX</span>Closing</a></li>
+    </ul>
+  </nav>
+  <div class="aside-thesis">
+    <p>"The firms that adapt best will not be those that adopt AI fastest. They will be those that redesign their operating model around the layers where value remains scarce."</p>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="page-main">
+
+  <!-- I. OPENING -->
+  <div id="opening">
+    <div class="s-head">
+      <span class="s-head-num">I</span>
+      <span class="s-head-title">Opening Statement</span>
+    </div>
+    <div class="opening-section appear">
+      <p class="opening-statement">
+        The professional firm was built to sell two things: <em>access to knowledge</em> and <em>the capacity to produce.</em> Both are changing. Neither is coming back.
+      </p>
+      <div class="opening-note">
+        <p>This is not a commentary on AI tools. It is a commentary on the economic structure of professional work -- what it has been built on, what that foundation now looks like, and what it requires of the firms that intend to remain relevant.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- II. THE MISUNDERSTANDING -->
+  <div id="misunderstanding">
+    <div class="s-head">
+      <span class="s-head-num">II</span>
+      <span class="s-head-title">The Misunderstanding</span>
+      <span class="s-head-right">Why most firms are looking in the wrong direction</span>
+    </div>
+    <div class="m-section appear">
+      <h2 class="m-h2">Most firms are treating a structural shift as a <em>workflow problem.</em></h2>
+      <div class="m-body">
+        <p class="lead">The dominant question in professional services right now is: which tasks can AI perform? Firms are mapping their processes, identifying AI-suitable activities, and measuring time saved. This is useful work. It is also insufficient.</p>
+        <p>Underneath tasks is a structure. A set of layers that defines how professional work is organized, how it is priced, and where its value actually lives. Task-level thinking cannot see this structure. It can tell you that AI drafts contracts faster. It cannot tell you what that means for the economics of the firm, the defensibility of client relationships, or the logic of billing a hundred and fifty pounds an hour for something that now takes six minutes.</p>
+        <p>The misunderstanding is not a failure of intelligence. It is a failure of frame. The firms asking "how do we use AI better" are answering a question that will be obsolete before the answer is implemented. The question that matters is: <strong>what is the economic structure of professional work, and which parts of that structure are durable?</strong></p>
+        <div class="pull-quote">
+          <p>"The firms asking how to use AI better are solving the wrong problem. The firms asking what changes structurally are the ones building for what comes next."</p>
+        </div>
+        <p>Efficiency is not a strategy. A firm that deploys AI to do more of the same work faster is more efficient in a market that is repricing the work itself. The advantage is temporary. The structural exposure remains.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- III. THE SHIFT -->
+  <div id="shift">
+    <div class="s-head">
+      <span class="s-head-num">III</span>
+      <span class="s-head-title">The Shift</span>
+      <span class="s-head-right">What is actually changing</span>
+    </div>
+    <div class="m-section alt appear">
+      <h2 class="m-h2">The economic conditions that made the traditional firm model rational no longer exist.</h2>
+      <div class="m-body">
+        <p class="lead">The professional firm was built on two conditions: information asymmetry and process opacity. Professional knowledge was scarce and hard to acquire independently. The work required to produce a deliverable was complex enough that clients could not assess its cost or quality without help. Together, these made the professional a necessary intermediary.</p>
+        <p>Both conditions are under structural pressure -- not the cyclical kind that eases when the market settles. Large bodies of specialized knowledge are now searchable and synthesizable. Structured cognitive work can be performed at a fraction of its traditional cost. The intermediary function the firm was built to serve is narrowing.</p>
+        <p>This does not mean the professional disappears. It means <strong>the value of the professional must now come from somewhere the tools cannot reach.</strong> And most firms have not yet clearly identified what that is.</p>
+        <div class="pull-quote">
+          <p>"The model has not become less efficient. It has become less necessary -- in precisely the parts it was built around."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IV. EXECUTION COLLAPSES -->
+  <div id="execution">
+    <div class="s-head">
+      <span class="s-head-num">IV</span>
+      <span class="s-head-title">The Collapse of Execution</span>
+      <span class="s-head-right">What stops being a value center</span>
+    </div>
+    <div class="m-section appear">
+      <h2 class="m-h2">Execution has always been necessary. It is no longer <em>sufficient.</em></h2>
+      <div class="m-body">
+        <p class="lead">Execution is structured production: drafting, processing, analysis, document preparation. It justified billing by the hour. It justified staffing pyramids. It justified entire firm architectures built around the capacity to produce. That justification is weakening.</p>
+        <p>The cost of execution is compressing. Its marginal cost is falling toward infrastructure -- a necessary base, no longer a primary value center. An invoice for associate hours spent on work AI now performs in minutes is not a billing model in transition. It is a billing model in conflict with what clients increasingly understand.</p>
+        <p>The structural consequence runs deeper than billing. Firms built on execution capacity are sitting on a foundation that is softening. The revenue does not collapse in a quarter. It reprices over years -- invisibly, until the pattern is established.</p>
+        <div class="pull-quote">
+          <p>"Execution becomes infrastructure. Infrastructure is necessary. Infrastructure does not command a premium."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- V. REPRICING OF JUDGMENT -->
+  <div id="repricing">
+    <div class="s-head">
+      <span class="s-head-num">V</span>
+      <span class="s-head-title">The Repricing of Judgment and Context</span>
+      <span class="s-head-right">What becomes more valuable</span>
+    </div>
+    <div class="m-section alt appear">
+      <h2 class="m-h2">The most valuable parts of professional work have been systematically <em>underpriced</em> for decades.</h2>
+      <div class="m-body">
+        <p class="lead">When execution was expensive, professional invoices blended everything together -- execution hours, research, judgment -- into a single rate. Judgment and context were in there. Neither was separately visible. Neither was separately priced. As execution costs compress, the bundle breaks open and what was hidden becomes legible.</p>
+        <p><strong>Judgment is the application of expertise to decisions that have no structurally correct answer.</strong> The tax recommendation that accounts for the client's real situation, not the one on paper. The legal opinion that assesses risk under genuine uncertainty, not just the state of the law. The advisory view that names a problem the client has not yet formulated. This work has not changed. Its value relative to everything beneath it has increased -- because what it is being compared to has become cheap.</p>
+        <p>Client context is the accumulated understanding of a specific client: how they make decisions, where they underestimate risk, what they say they want versus what they consistently choose. It is not in the data. It is earned through years of proximity. It cannot be transferred to a competitor or retrieved from a database. It is the primary mechanism by which the professional remains indispensable to that client -- not because of what they know in general, but because of what they know about that client specifically.</p>
+        <div class="pull-quote">
+          <p>"The professional's most valuable work has always been judgment and context. The collapse of execution is not a threat to that value. It is its moment of visibility."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VI. THE NEW PROFESSIONAL -->
+  <div id="professional">
+    <div class="s-head">
+      <span class="s-head-num">VI</span>
+      <span class="s-head-title">The New Professional</span>
+      <span class="s-head-right">What matters now</span>
+    </div>
+    <div class="m-section appear">
+      <h2 class="m-h2">The professional who thrives is not the one who uses AI most fluently. It is the one who has the <em>clearest understanding of their own value.</em></h2>
+      <div class="m-body">
+        <p class="lead">The question the profession has never been asked to answer explicitly is now unavoidable: <strong>what do I provide that is genuinely irreplaceable?</strong> Not what you are trained to do. Not what you are licensed to do. What you provide that the client cannot get elsewhere once the execution beneath your work is no longer expensive.</p>
+        <p>The answer is specific. It is the particular expertise applied to this type of problem. The judgment developed across this type of client. The context accumulated in these specific relationships. The professional who can answer this specifically is in a defensible position. The professional who answers with generalities is describing a role that can be approximated.</p>
+        <p>The new professional also understands orchestration -- the capacity to design how work moves across humans and AI systems. Not the technical capacity to configure systems. The professional capacity to specify what the system should do, verify that it did it correctly, and take accountability for the output. This competency is not optional. It is not the same as knowing which tools to open.</p>
+        <p>And the new professional is visible. Reputation built in private -- excellent work delivered quietly -- is real but not competitive. In a market with more options and more information, the professional recognizable for something specific has an advantage that compounds. The professional who is simply competent and available is competing on terms the market is moving to price downward.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VII. WHAT FIRMS GET WRONG -->
+  <div id="wrong">
+    <div class="s-head">
+      <span class="s-head-num">VII</span>
+      <span class="s-head-title">What Firms Get Wrong</span>
+      <span class="s-head-right">Five recurring errors</span>
+    </div>
+    <div class="m-section alt appear">
+      <h2 class="m-h2">These are not technology failures. They are <em>framing failures.</em></h2>
+      <div class="m-body">
+        <p>The following errors appear repeatedly across professional firms engaging with AI. None of them is a failure of competence. Each of them is a consequence of addressing the wrong question.</p>
+      </div>
+      <div class="decl-list">
+        <div class="decl-item">
+          <span class="decl-marker">01</span>
+          <div class="decl-content">
+            <div class="decl-title">Treating adoption as transformation</div>
+            <p class="decl-text">A firm that equips every professional with AI tools and changes nothing else has not transformed its operating model. It has accelerated its existing one. The tools are a precondition. The operating model change is the work. This also applies to the junior development pathway: if AI absorbs the execution through which professionals historically learned to judge, a replacement development model is required -- not assumed.</p>
+          </div>
+        </div>
+        <div class="decl-item">
+          <span class="decl-marker">02</span>
+          <div class="decl-content">
+            <div class="decl-title">Optimizing execution while the value of execution declines</div>
+            <p class="decl-text">Making execution faster and cheaper is useful. It is not a strategy when the market is repricing execution downward. Efficiency gains in a compressing category extend the runway. They do not change the destination.</p>
+          </div>
+        </div>
+        <div class="decl-item">
+          <span class="decl-marker">03</span>
+          <div class="decl-content">
+            <div class="decl-title">Confusing AI governance with IT governance</div>
+            <p class="decl-text">Decisions about how AI is used in client-facing professional work are professional decisions, not technology decisions. Which outputs require human verification, which workflows can delegate to AI and at what threshold, how accountability is maintained -- these belong to practice leadership. Delegating them to technology teams produces compliant infrastructure and unaddressed professional risk.</p>
+          </div>
+        </div>
+        <div class="decl-item">
+          <span class="decl-marker">04</span>
+          <div class="decl-content">
+            <div class="decl-title">Measuring AI impact by time saved rather than value redistributed</div>
+            <p class="decl-text">Time saved is a metric for efficiency. It is not a metric for strategic positioning. The relevant question is not how much time AI freed up. It is what that time was used for. Time redistributed from execution to judgment and context-building changes the firm's position. Time redistributed from execution to more execution does not.</p>
+          </div>
+        </div>
+        <div class="decl-item">
+          <span class="decl-marker">05</span>
+          <div class="decl-content">
+            <div class="decl-title">Keeping the hourly model as the default while the ground shifts beneath it</div>
+            <p class="decl-text">Time-based billing made sense when time was the primary input. When execution time compresses dramatically, the hourly model prices the firm's efficiency gains toward the client, not the firm. The transition to value-based pricing is not a commercial preference. It is the economic consequence of the structural shift, deferred until client pressure forces it. Deferring it is not neutral. It is a choice to let the market set the terms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIII. THE CHOICE -->
+  <div id="choice">
+    <div class="s-head">
+      <span class="s-head-num">VIII</span>
+      <span class="s-head-title">The Choice</span>
+      <span class="s-head-right">Two trajectories</span>
+    </div>
+    <div class="m-section appear">
+      <h2 class="m-h2">There is no neutral position. Firms are choosing their trajectory, whether or not they are <em>choosing deliberately.</em></h2>
+      <div class="m-body">
+        <p class="lead">The market is not bifurcating suddenly. It is sorting quietly -- margin compression in execution-heavy practices, gradual movement of complex work toward better-positioned firms, rising client sophistication about what AI-capable firms can offer. By the time the bifurcation is visible to everyone, the firms on the wrong side are no longer choosing their position. The market has chosen it for them.</p>
+      </div>
+
+      <div class="choice-grid" style="margin-top: 36px;">
+        <div class="choice-col">
+          <div class="choice-col-head">The firm that does not redesign</div>
+          <div class="choice-items">
+            <div class="choice-item">Continues to price by the hour for work that AI performs in minutes</div>
+            <div class="choice-item">Loses the most sophisticated clients first -- the ones who notice first</div>
+            <div class="choice-item">Competes on price in a market where the pressure comes from AI capability, not from competitors</div>
+            <div class="choice-item">Retains the compliance work. Loses the judgment work. Becomes a production shop</div>
+            <div class="choice-item">Describes its value in the same language it used ten years ago, to clients asking different questions</div>
+          </div>
+        </div>
+        <div class="choice-col">
+          <div class="choice-col-head">The firm that redesigns</div>
+          <div class="choice-items">
+            <div class="choice-item">Prices the judgment and context AI cannot provide, not the execution it can</div>
+            <div class="choice-item">Uses AI-compressed execution time to invest in the client relationships that produce context</div>
+            <div class="choice-item">Builds reputation on specific expertise, not general competence</div>
+            <div class="choice-item">Develops orchestration as a professional competency, not a technology function</div>
+            <div class="choice-item">Defines what it provides with enough specificity that clients who need it can find it</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-body" style="margin-top: 36px;">
+        <p>The gap between these trajectories is not visible in year one. It is measurable in year three. It is structural by year five.</p>
+        <p>This is the window. It is not indefinitely open.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- IX. CLOSING -->
+  <div id="closing">
+    <div class="s-head">
+      <span class="s-head-num">IX</span>
+      <span class="s-head-title">Closing Statement</span>
+    </div>
+    <div class="closing-section appear">
+      <div class="closing-quote-block">
+        <blockquote>
+          "The professional firm that understands this moment will not be defined by the tools it adopts. It will be defined by the clarity with which it answers a question the profession has never been asked to answer before: <em>what do we provide that remains scarce when production becomes cheap?</em>"
+        </blockquote>
+      </div>
+      <div class="closing-coda">
+        <p>The answer to that question is not the same for every firm. It depends on the clients the firm serves, the expertise it has genuinely built, the context it has accumulated, the relationships it has invested in.</p>
+        <p>But the question itself is not optional. Firms that do not answer it will have the answer imposed on them -- in the form of clients who leave, pricing pressure on work that can be automated, and a gradual narrowing of what remains.</p>
+        <p><strong>The AI-native professional firm is not one that uses AI. It is one that has redesigned itself around the layers of professional value that AI cannot reach -- and that has the operating model, the pricing, and the client relationships to demonstrate that difference.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="m-cta appear">
+    <div class="m-cta-left">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--acc);margin-bottom:8px;">Continue</div>
+      <h2 class="m-cta-h2">The framework defines<br>the <em>architecture.</em><br>The manifesto defines<br>the <em>stakes.</em></h2>
+      <p class="m-cta-body">The Future Firm Architecture provides the structural model behind the positions taken here. If this manifesto raised questions about your firm's operating model, the framework is where those questions become operational.</p>
+      <div class="m-cta-actions">
+        <a href="framework.html" class="btn-primary">Read the Architecture &#8594;</a>
+        <a href="index.html#access" class="btn-ghost">Request a conversation</a>
+      </div>
+    </div>
+    <div class="m-cta-right">
+      <div class="m-cta-detail">
+        <div class="m-cta-detail-label">What the framework adds</div>
+        <p class="m-cta-detail-text">The four-layer model -- Client Context, Judgment, Orchestration, Execution -- with full analysis of economic and operating implications.</p>
+      </div>
+      <div class="m-cta-detail">
+        <div class="m-cta-detail-label">For firms ready to apply it</div>
+        <p class="m-cta-detail-text">Future Firm supports a limited number of firms and practitioners in applying the architecture to their specific operating context.</p>
+      </div>
+      <div class="m-cta-detail">
+        <div class="m-cta-detail-label">Starting point</div>
+        <p class="m-cta-detail-text">A direct conversation about whether there is a genuine architectural question to work on together.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div><!-- .page-body -->
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Future Firm</div>
+    <div class="footer-desc">The operating model of the AI-native firm.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html#thesis">Thesis</a></li>
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="manifesto.html">Manifesto</a></li>
+    <li><a href="index.html#access">Access</a></li>
+  </ul>
+  <div class="footer-right">
+    futurefirm.[domain]<br>
+    <span style="color:var(--text-dim)">&#169; 2025&#8211;2026</span>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -24px 0px' });
+
+document.querySelectorAll('.appear').forEach(el => obs.observe(el));
+
+setTimeout(() => {
+  document.querySelectorAll('.appear:not(.visible)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight)
+      el.classList.add('visible');
+  });
+}, 80);
+
+const sections = document.querySelectorAll('[id]');
+const sideLinks = document.querySelectorAll('.aside-nav a');
+
+const sObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.getAttribute('id');
+      sideLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(s => sObs.observe(s));
+</script>
+</body>
+</html>
